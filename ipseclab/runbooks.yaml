@@ -1,0 +1,98 @@
+# Runbooks the triage agent may match an alarm against.
+# Each has: the telemetry signature a human would look for, pre-approved
+# reversible actions (ids are the allowlist), and how to verify the fix.
+# The agent never executes anything; it recommends an action id from here.
+
+runbooks:
+  - id: mtu-blackhole
+    title: PMTUD blackhole (ICMP fragmentation-needed is being dropped)
+    signature: >
+      Tunnel stays ESTABLISHED/INSTALLED with counters moving. pmtud_min drops
+      to 0 (the 1472-byte DF probe gets no reply at all, not even the ICMP
+      error). tcp_min drops to 0 (short TCP transfer handshakes but stalls).
+      rtt, loss and jitter stay at baseline. Only one tunnel affected.
+    actions:
+      - id: apply-mss-clamp
+        what: "iptables -t mangle TCPMSS --set-mss 1360 on both -i vti+ and -o vti+ on the affected gateway"
+        reversible: true
+      - id: find-icmp-filter
+        what: "walk OUTPUT/FORWARD chains and security groups on the path for a rule dropping ICMP type 3 code 4"
+        reversible: true
+    verify: tcp_min returns to 1 within two ticks of the clamp; pmtud_min stays 0 until the ICMP filter itself is removed.
+
+  - id: underlay-loss
+    title: Underlay packet loss on one tunnel (will become a DPD flap)
+    signature: >
+      loss_mean rises from ~0, rtt_max and jitter_mean rise, tcp_min drops to 0
+      early (a 1 s transfer cannot finish at 30% loss). retrans_sum climbs as IKE
+      retransmits. pmtud_min may fluctuate. Only one tunnel affected; hub-wide
+      features flat. If untreated, ike_downs follows when DPD gives up.
+    actions:
+      - id: raise-dpd-tolerance
+        what: "temporarily lengthen dpd_delay / retransmit_tries on this one peer so a lossy underlay does not tear the SA down"
+        reversible: true
+      - id: shift-to-sibling-tunnel
+        what: "prefer the branch's second underlay or second hub if one exists"
+        reversible: true
+      - id: open-underlay-ticket
+        what: "page the carrier / cloud provider with the loss figures; nothing on the gateway fixes underlay loss"
+        reversible: true
+    verify: loss_mean returns to baseline; no ike_down_event; retrans_sum stops climbing.
+
+  - id: rekey-storm
+    title: Synchronised rekey across many tunnels
+    signature: >
+      hub_rekey_burst far above its baseline maximum (many SAs rekeying in the
+      same 5 s tick). rekey_sum up on many branches in the same minute.
+      hub_cpu_max may rise. Fleet-wide: most or all tunnels alarm within seconds
+      of each other. Per-tunnel probes (rtt, loss, pmtud, tcp) stay normal.
+    actions:
+      - id: widen-rand-time
+        what: "set rand_time to 25-30% of rekey_time on the hub profile and reload (responder-side reload does not drop tunnels)"
+        reversible: true
+      - id: stagger-restart
+        what: "if the storm was baked in at boot, restart branches with a urandom-derived delay so no two start in the same second"
+        reversible: true
+      - id: switch-dh-group
+        what: "move the proposal from modp4096 to x25519/ecp256 so each rekey costs 40x less CPU"
+        reversible: true
+    verify: hub_rekey_burst stays at or below baseline max over the next full lifetime.
+
+  - id: tunnel-down
+    title: Tunnel torn down (DPD or peer-initiated) and reconnecting
+    signature: >
+      down_sum > 0 or ike_down_event = 1, child_state not INSTALLED, probes all
+      fail at once (pmtud_min 0, tcp_min 0, loss 100). Usually preceded by
+      underlay-loss; if not, suspect the peer restarting or a config reload.
+    actions:
+      - id: watch-reconnect
+        what: "keyingtries = 0 means the branch retries forever; confirm it re-establishes within 30 s before doing anything"
+        reversible: true
+      - id: check-peer-restart
+        what: "look for a charon restart or swanctl --load-all on the peer at that timestamp"
+        reversible: true
+    verify: child_state INSTALLED and probes back to 1 within 30 s.
+
+  - id: hub-overload
+    title: Hub CPU saturated by crypto
+    signature: >
+      hub_cpu_max near 100% sustained, retrans_sum rising on many branches at
+      once, rekeys slow or timing out. Often the second stage of a rekey storm
+      on an undersized hub or with a large MODP group.
+    actions:
+      - id: switch-dh-group
+        what: "move the proposal from modp4096 to x25519/ecp256"
+        reversible: true
+      - id: shed-rekeys
+        what: "temporarily lengthen child rekey_time on the hub profile to spread load, then fix jitter"
+        reversible: true
+    verify: hub_cpu_max back under 50% and retrans_sum flat.
+
+  - id: unknown
+    title: Does not match a runbook
+    signature: Use when the evidence does not fit any entry above. Say what is unusual and what to look at first.
+    actions:
+      - id: page-human
+        what: "hand the signature to the on-call with the top features and no automated action"
+        reversible: true
+    verify: n/a

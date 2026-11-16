@@ -1,0 +1,246 @@
+{
+  "zscore": [
+    {
+      "fault": "dpd-flap",
+      "node": "branch3",
+      "detected": true,
+      "detect_delay_s": 6.0,
+      "dpd_down_s": 62.0,
+      "lead_over_dpd_s": 56.0
+    },
+    {
+      "fault": "mtu-blackhole",
+      "node": "branch5",
+      "detected": true,
+      "detect_delay_s": 4.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch1",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch10",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch11",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch12",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch2",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch3",
+      "detected": true,
+      "detect_delay_s": 6.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch4",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch5",
+      "detected": true,
+      "detect_delay_s": 4.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch6",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch7",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch8",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch9",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "false_positive",
+      "node": "healthy_time",
+      "fp_episodes": 0,
+      "fp_ticks": 0,
+      "healthy_node_hours": 2.69,
+      "fp_per_node_hour": 0.0
+    }
+  ],
+  "iforest": [
+    {
+      "fault": "dpd-flap",
+      "node": "branch3",
+      "detected": true,
+      "detect_delay_s": 67.0,
+      "dpd_down_s": 62.0,
+      "lead_over_dpd_s": -5.0
+    },
+    {
+      "fault": "mtu-blackhole",
+      "node": "branch5",
+      "detected": true,
+      "detect_delay_s": 255.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch1",
+      "detected": true,
+      "detect_delay_s": 9.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch10",
+      "detected": true,
+      "detect_delay_s": 9.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch11",
+      "detected": true,
+      "detect_delay_s": 34.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch12",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch2",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch3",
+      "detected": true,
+      "detect_delay_s": 6.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch4",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch5",
+      "detected": true,
+      "detect_delay_s": 9.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch6",
+      "detected": true,
+      "detect_delay_s": 59.0,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch7",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch8",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "rekey-storm",
+      "node": "branch9",
+      "detected": false,
+      "detect_delay_s": null,
+      "dpd_down_s": null,
+      "lead_over_dpd_s": null
+    },
+    {
+      "fault": "false_positive",
+      "node": "healthy_time",
+      "fp_episodes": 6,
+      "fp_ticks": 33,
+      "healthy_node_hours": 2.69,
+      "fp_per_node_hour": 2.23
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+2026-11-12T01:27:57 00[DMN] Starting IKE charon daemon (strongSwan 5.9.13, Linux 6.10.14-linuxkit, aarch64)
+2026-11-12T01:27:57 00[LIB] providers loaded by OpenSSL: legacy default
+2026-11-12T01:27:57 00[CFG] install DNS servers in '/etc/resolv.conf'
+2026-11-12T01:27:57 00[KNL] received netlink error: Unknown device type (95)
+2026-11-12T01:27:57 00[KNL] failed to create XFRM interface 'xfrmi-test-1053'
+2026-11-12T01:27:57 00[CFG] attr-sql plugin: database URI not set
+2026-11-12T01:27:57 00[CFG] loading ca certificates from '/etc/ipsec.d/cacerts'
+2026-11-12T01:27:57 00[CFG] loading aa certificates from '/etc/ipsec.d/aacerts'
+2026-11-12T01:27:57 00[CFG] loading ocsp signer certificates from '/etc/ipsec.d/ocspcerts'
+2026-11-12T01:27:57 00[CFG] loading attribute certificates from '/etc/ipsec.d/acerts'
+2026-11-12T01:27:57 00[CFG] loading crls from '/etc/ipsec.d/crls'
+2026-11-12T01:27:57 00[CFG] loading secrets from '/etc/ipsec.secrets'
+2026-11-12T01:27:57 00[CFG] opening triplet file /etc/ipsec.d/triplets.dat failed: No such file or directory
+2026-11-12T01:27:57 00[CFG] loaded 0 RADIUS server configurations
+2026-11-12T01:27:57 00[CFG] HA config misses local/remote address
+2026-11-12T01:27:57 00[LIB] loaded plugins: charon mgf1 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs12 pgp dnskey sshkey pem openssl pkcs8 fips-prf gmp curve25519 xcbc cmac kdf gcm drbg curl sqlite attr kernel-netlink resolve socket-default bypass-lan farp stroke vici updown eap-identity eap-sim eap-aka eap-aka-3gpp2 eap-simaka-pseudonym eap-simaka-reauth eap-md5 eap-mschapv2 eap-radius eap-tls xauth-generic xauth-eap dhcp unity counters
+2026-11-12T01:27:57 00[LIB] dropped capabilities, running as uid 100, gid 101
+2026-11-12T01:27:57 00[JOB] spawning 16 worker threads
+2026-11-12T01:27:57 05[IKE] installed bypass policy for 10.0.0.0/24
+2026-11-12T01:27:57 05[IKE] installed bypass policy for 10.1.10.0/24
+2026-11-12T01:27:57 05[IKE] installed bypass policy for 10.100.0.0/24
+2026-11-12T01:27:57 05[IKE] installed bypass policy for fe80::/64
+2026-11-12T01:27:57 05[IKE] interface change for bypass policy for fe80::/64 (from veth-lan to vti10)
+2026-11-12T01:27:58 08[CFG] loaded IKE shared key with id 'ike-1' for: 'branch10', 'hub'
+2026-11-12T01:27:58 12[CFG] added vici connection: hub
+2026-11-12T01:27:58 12[CFG] initiating 'net'
+2026-11-12T01:27:58 12[IKE] <hub|1> initiating IKE_SA hub[1] to 10.0.0.10
+2026-11-12T01:27:58 12[ENC] <hub|1> generating IKE_SA_INIT request 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) N(FRAG_SUP) N(HASH_ALG) N(REDIR_SUP) ]
+2026-11-12T01:27:58 12[NET] <hub|1> sending packet: from 10.0.0.20[500] to 10.0.0.10[500] (712 bytes)
+2026-11-12T01:27:58 07[NET] <hub|1> received packet: from 10.0.0.10[500] to 10.0.0.20[500] (720 bytes)
+2026-11-12T01:27:58 07[ENC] <hub|1> parsed IKE_SA_INIT response 0 [ SA KE No N(NATD_S_IP) N(NATD_D_IP) N(FRAG_SUP) N(HASH_ALG) N(CHDLESS_SUP) N(MULT_AUTH) ]
+2026-11-12T01:27:58 07[CFG] <hub|1> selected proposal: IKE:AES_GCM_16_256/PRF_HMAC_SHA2_384/MODP_4096
+2026-11-12T01:27:58 07[IKE] <hub|1> authentication of 'branch10' (myself) with pre-shared key
+2026-11-12T01:27:58 07[IKE] <hub|1> establishing CHILD_SA net{1}
+2026-11-12T01:27:58 07[ENC] <hub|1> generating IKE_AUTH request 1 [ IDi N(INIT_CONTACT) IDr AUTH SA TSi TSr N(MOBIKE_SUP) N(ADD_4_ADDR) N(MULT_AUTH) N(EAP_ONLY) N(MSG_ID_SYN_SUP) ]
+2026-11-12T01:27:58 07[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (276 bytes)
+2026-11-12T01:27:58 05[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (228 bytes)
+2026-11-12T01:27:58 05[ENC] <hub|1> parsed IKE_AUTH response 1 [ IDr AUTH SA TSi TSr N(MOBIKE_SUP) N(ADD_4_ADDR) ]
+2026-11-12T01:27:58 05[IKE] <hub|1> authentication of 'hub' with pre-shared key successful
+2026-11-12T01:27:58 05[IKE] <hub|1> peer supports MOBIKE
+2026-11-12T01:27:58 05[IKE] <hub|1> IKE_SA hub[1] established between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:27:58 05[IKE] <hub|1> scheduling rekeying in 516s
+2026-11-12T01:27:58 05[IKE] <hub|1> maximum IKE_SA lifetime 576s
+2026-11-12T01:27:58 05[CFG] <hub|1> selected proposal: ESP:AES_GCM_16_256/NO_EXT_SEQ
+2026-11-12T01:27:58 05[IKE] <hub|1> CHILD_SA net{1} established with SPIs c5555575_i cf5a8f7d_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:27:58 06[CFG] vici initiate CHILD_SA 'net', me (null), other (null), limits 0
+2026-11-12T01:27:58 14[IKE] <hub|1> not establishing CHILD_SA net{2} due to existing duplicate {1} with SPIs c5555575_i cf5a8f7d_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:27:58 06[KNL] flags changed for fe80::4ccd:3bff:fec7:e49 on veth-lan
+2026-11-12T01:27:59 13[IKE] <hub|1> sending address list update using MOBIKE
+2026-11-12T01:27:59 13[ENC] <hub|1> generating INFORMATIONAL request 2 [ N(ADD_4_ADDR) ]
+2026-11-12T01:27:59 13[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:27:59 10[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:27:59 10[ENC] <hub|1> parsed INFORMATIONAL response 2 [ ]
+2026-11-12T01:27:59 11[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:27:59 11[ENC] <hub|1> parsed INFORMATIONAL request 0 [ N(ADD_4_ADDR) ]
+2026-11-12T01:27:59 11[ENC] <hub|1> generating INFORMATIONAL response 0 [ ]
+2026-11-12T01:27:59 11[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:08 13[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:08 13[ENC] <hub|1> parsed INFORMATIONAL request 1 [ ]
+2026-11-12T01:28:08 13[ENC] <hub|1> generating INFORMATIONAL response 1 [ ]
+2026-11-12T01:28:08 13[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:18 03[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:18 03[ENC] <hub|1> parsed INFORMATIONAL request 2 [ ]
+2026-11-12T01:28:18 03[ENC] <hub|1> generating INFORMATIONAL response 2 [ ]
+2026-11-12T01:28:18 03[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:28 03[IKE] <hub|1> sending DPD request
+2026-11-12T01:28:28 03[ENC] <hub|1> generating INFORMATIONAL request 3 [ ]
+2026-11-12T01:28:28 03[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:28 10[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:28 10[ENC] <hub|1> parsed INFORMATIONAL request 3 [ ]
+2026-11-12T01:28:28 10[ENC] <hub|1> generating INFORMATIONAL response 3 [ ]
+2026-11-12T01:28:28 10[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:30 14[IKE] <hub|1> retransmit 1 of request with message ID 3
+2026-11-12T01:28:30 14[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:30 07[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:30 07[ENC] <hub|1> parsed INFORMATIONAL response 3 [ ]
+2026-11-12T01:28:38 08[IKE] <hub|1> sending DPD request
+2026-11-12T01:28:38 08[ENC] <hub|1> generating INFORMATIONAL request 4 [ ]
+2026-11-12T01:28:38 08[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:38 12[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:38 12[ENC] <hub|1> parsed INFORMATIONAL request 4 [ ]
+2026-11-12T01:28:38 12[ENC] <hub|1> generating INFORMATIONAL response 4 [ ]
+2026-11-12T01:28:38 12[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:28:38 09[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:38 09[ENC] <hub|1> parsed INFORMATIONAL response 4 [ ]
+2026-11-12T01:28:40 03[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:28:40 03[IKE] <hub|1> received retransmit of request with ID 4, retransmitting response
+2026-11-12T01:28:40 03[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:29:58 13[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:29:58 13[ENC] <hub|1> parsed CREATE_CHILD_SA request 5 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:29:58 13[CFG] <hub|1> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:29:58 13[IKE] <hub|1> inbound CHILD_SA net{3} established with SPIs cc082d00_i ce2075ef_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:29:58 13[ENC] <hub|1> generating CREATE_CHILD_SA response 5 [ SA No KE TSi TSr ]
+2026-11-12T01:29:58 13[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:29:58 12[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:29:58 12[ENC] <hub|1> parsed INFORMATIONAL request 6 [ D ]
+2026-11-12T01:29:58 12[IKE] <hub|1> received DELETE for ESP CHILD_SA with SPI cf5a8f7d
+2026-11-12T01:29:58 12[IKE] <hub|1> closing CHILD_SA net{1} with SPIs c5555575_i (554861 bytes) cf5a8f7d_o (13848895 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:29:58 12[IKE] <hub|1> sending DELETE for ESP CHILD_SA with SPI c5555575
+2026-11-12T01:29:58 12[IKE] <hub|1> CHILD_SA closed
+2026-11-12T01:29:58 12[IKE] <hub|1> outbound CHILD_SA net{3} established with SPIs cc082d00_i ce2075ef_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:29:58 12[ENC] <hub|1> generating INFORMATIONAL response 6 [ D ]
+2026-11-12T01:29:58 12[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:32:27 09[KNL] creating rekey job for CHILD_SA ESP/0xcc082d00/10.0.0.20
+2026-11-12T01:32:27 09[IKE] <hub|1> establishing CHILD_SA net{4} reqid 1
+2026-11-12T01:32:27 09[ENC] <hub|1> generating CREATE_CHILD_SA request 5 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:32:27 09[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (717 bytes)
+2026-11-12T01:32:27 10[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (705 bytes)
+2026-11-12T01:32:27 10[ENC] <hub|1> parsed CREATE_CHILD_SA response 5 [ SA No KE TSi TSr ]
+2026-11-12T01:32:27 10[CFG] <hub|1> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:32:27 10[IKE] <hub|1> inbound CHILD_SA net{4} established with SPIs c0e5f805_i c060fcd6_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:32:27 10[IKE] <hub|1> outbound CHILD_SA net{4} established with SPIs c0e5f805_i c060fcd6_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:32:27 10[IKE] <hub|1> closing CHILD_SA net{3} with SPIs cc082d00_i (696272 bytes) ce2075ef_o (17523938 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:32:27 10[IKE] <hub|1> sending DELETE for ESP CHILD_SA with SPI cc082d00
+2026-11-12T01:32:27 10[ENC] <hub|1> generating INFORMATIONAL request 6 [ D ]
+2026-11-12T01:32:27 10[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:32:27 03[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:32:27 03[ENC] <hub|1> parsed INFORMATIONAL response 6 [ D ]
+2026-11-12T01:32:27 03[IKE] <hub|1> received DELETE for ESP CHILD_SA with SPI ce2075ef
+2026-11-12T01:32:27 03[IKE] <hub|1> CHILD_SA closed
+2026-11-12T01:34:36 10[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:34:36 10[ENC] <hub|1> parsed CREATE_CHILD_SA request 7 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:34:36 10[CFG] <hub|1> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:34:36 10[IKE] <hub|1> inbound CHILD_SA net{5} established with SPIs c6cdad35_i c2b63646_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:34:36 10[ENC] <hub|1> generating CREATE_CHILD_SA response 7 [ SA No KE TSi TSr ]
+2026-11-12T01:34:36 10[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:34:36 12[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:34:36 12[ENC] <hub|1> parsed INFORMATIONAL request 8 [ D ]
+2026-11-12T01:34:36 12[IKE] <hub|1> received DELETE for ESP CHILD_SA with SPI c060fcd6
+2026-11-12T01:34:36 12[IKE] <hub|1> closing CHILD_SA net{4} with SPIs c0e5f805_i (603431 bytes) c060fcd6_o (15167963 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:34:36 12[IKE] <hub|1> sending DELETE for ESP CHILD_SA with SPI c0e5f805
+2026-11-12T01:34:36 12[IKE] <hub|1> CHILD_SA closed
+2026-11-12T01:34:36 12[IKE] <hub|1> outbound CHILD_SA net{5} established with SPIs c6cdad35_i c2b63646_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:34:36 12[ENC] <hub|1> generating INFORMATIONAL response 8 [ D ]
+2026-11-12T01:34:36 12[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:36:34 03[IKE] <hub|1> initiating IKE_SA hub[2] to 10.0.0.10
+2026-11-12T01:36:34 03[ENC] <hub|1> generating CREATE_CHILD_SA request 7 [ SA No KE ]
+2026-11-12T01:36:34 03[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (661 bytes)
+2026-11-12T01:36:34 12[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (661 bytes)
+2026-11-12T01:36:34 12[ENC] <hub|1> parsed CREATE_CHILD_SA response 7 [ SA No KE ]
+2026-11-12T01:36:34 12[CFG] <hub|1> selected proposal: IKE:AES_GCM_16_256/PRF_HMAC_SHA2_384/MODP_4096
+2026-11-12T01:36:34 12[IKE] <hub|1> scheduling rekeying in 564s
+2026-11-12T01:36:34 12[IKE] <hub|1> maximum IKE_SA lifetime 624s
+2026-11-12T01:36:34 12[IKE] <hub|1> IKE_SA hub[2] rekeyed between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:36:34 12[IKE] <hub|1> deleting IKE_SA hub[1] between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:36:34 12[IKE] <hub|1> sending DELETE for IKE_SA hub[1]
+2026-11-12T01:36:34 12[ENC] <hub|1> generating INFORMATIONAL request 8 [ D ]
+2026-11-12T01:36:34 12[NET] <hub|1> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (65 bytes)
+2026-11-12T01:36:34 09[NET] <hub|1> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:36:34 09[ENC] <hub|1> parsed INFORMATIONAL response 8 [ ]
+2026-11-12T01:36:34 09[IKE] <hub|1> IKE_SA deleted
+2026-11-12T01:36:42 06[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:36:42 06[ENC] <hub|2> parsed CREATE_CHILD_SA request 0 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:36:42 06[CFG] <hub|2> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:36:42 06[IKE] <hub|2> inbound CHILD_SA net{6} established with SPIs c2fe526b_i c9f01f23_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:36:42 06[ENC] <hub|2> generating CREATE_CHILD_SA response 0 [ SA No KE TSi TSr ]
+2026-11-12T01:36:42 06[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:36:42 09[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:36:42 09[ENC] <hub|2> parsed INFORMATIONAL request 1 [ D ]
+2026-11-12T01:36:42 09[IKE] <hub|2> received DELETE for ESP CHILD_SA with SPI c2b63646
+2026-11-12T01:36:42 09[IKE] <hub|2> closing CHILD_SA net{5} with SPIs c6cdad35_i (590049 bytes) c2b63646_o (14755390 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:36:42 09[IKE] <hub|2> sending DELETE for ESP CHILD_SA with SPI c6cdad35
+2026-11-12T01:36:42 09[IKE] <hub|2> CHILD_SA closed
+2026-11-12T01:36:42 09[IKE] <hub|2> outbound CHILD_SA net{6} established with SPIs c2fe526b_i c9f01f23_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:36:42 09[ENC] <hub|2> generating INFORMATIONAL response 1 [ D ]
+2026-11-12T01:36:42 09[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:38:53 06[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:38:53 06[ENC] <hub|2> parsed CREATE_CHILD_SA request 2 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:38:53 06[CFG] <hub|2> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:38:53 06[IKE] <hub|2> inbound CHILD_SA net{7} established with SPIs c22eb177_i c4a14074_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:38:53 06[ENC] <hub|2> generating CREATE_CHILD_SA response 2 [ SA No KE TSi TSr ]
+2026-11-12T01:38:53 06[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:38:53 12[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:38:53 12[ENC] <hub|2> parsed INFORMATIONAL request 3 [ D ]
+2026-11-12T01:38:53 12[IKE] <hub|2> received DELETE for ESP CHILD_SA with SPI c9f01f23
+2026-11-12T01:38:53 12[IKE] <hub|2> closing CHILD_SA net{6} with SPIs c2fe526b_i (606450 bytes) c9f01f23_o (15160494 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:38:53 12[IKE] <hub|2> sending DELETE for ESP CHILD_SA with SPI c2fe526b
+2026-11-12T01:38:53 12[IKE] <hub|2> CHILD_SA closed
+2026-11-12T01:38:53 12[IKE] <hub|2> outbound CHILD_SA net{7} established with SPIs c22eb177_i c4a14074_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:38:53 12[ENC] <hub|2> generating INFORMATIONAL response 3 [ D ]
+2026-11-12T01:38:53 12[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:41:02 08[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:41:02 08[ENC] <hub|2> parsed CREATE_CHILD_SA request 4 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:41:02 08[CFG] <hub|2> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:41:02 08[IKE] <hub|2> inbound CHILD_SA net{8} established with SPIs c9a48052_i cbaa1c92_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:41:02 08[ENC] <hub|2> generating CREATE_CHILD_SA response 4 [ SA No KE TSi TSr ]
+2026-11-12T01:41:02 08[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:41:02 14[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:41:02 14[ENC] <hub|2> parsed INFORMATIONAL request 5 [ D ]
+2026-11-12T01:41:02 14[IKE] <hub|2> received DELETE for ESP CHILD_SA with SPI c4a14074
+2026-11-12T01:41:02 14[IKE] <hub|2> closing CHILD_SA net{7} with SPIs c22eb177_i (579008 bytes) c4a14074_o (14525182 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:41:02 14[IKE] <hub|2> sending DELETE for ESP CHILD_SA with SPI c22eb177
+2026-11-12T01:41:02 14[IKE] <hub|2> CHILD_SA closed
+2026-11-12T01:41:02 14[IKE] <hub|2> outbound CHILD_SA net{8} established with SPIs c9a48052_i cbaa1c92_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:41:02 14[ENC] <hub|2> generating INFORMATIONAL response 5 [ D ]
+2026-11-12T01:41:02 14[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:43:39 05[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:43:39 05[ENC] <hub|2> parsed CREATE_CHILD_SA request 6 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:43:39 05[CFG] <hub|2> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:43:39 05[IKE] <hub|2> inbound CHILD_SA net{9} established with SPIs c6577c19_i cc4f975a_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:43:39 05[ENC] <hub|2> generating CREATE_CHILD_SA response 6 [ SA No KE TSi TSr ]
+2026-11-12T01:43:39 05[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:43:39 13[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:43:39 13[ENC] <hub|2> parsed INFORMATIONAL request 7 [ D ]
+2026-11-12T01:43:39 13[IKE] <hub|2> received DELETE for ESP CHILD_SA with SPI cbaa1c92
+2026-11-12T01:43:39 13[IKE] <hub|2> closing CHILD_SA net{8} with SPIs c9a48052_i (667745 bytes) cbaa1c92_o (16904151 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:43:39 13[IKE] <hub|2> sending DELETE for ESP CHILD_SA with SPI c9a48052
+2026-11-12T01:43:39 13[IKE] <hub|2> CHILD_SA closed
+2026-11-12T01:43:39 13[IKE] <hub|2> outbound CHILD_SA net{9} established with SPIs c6577c19_i cc4f975a_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:43:39 13[ENC] <hub|2> generating INFORMATIONAL response 7 [ D ]
+2026-11-12T01:43:39 13[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:45:19 13[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (661 bytes)
+2026-11-12T01:45:19 13[ENC] <hub|2> parsed CREATE_CHILD_SA request 8 [ SA No KE ]
+2026-11-12T01:45:19 13[IKE] <hub|2> 10.0.0.10 is initiating an IKE_SA
+2026-11-12T01:45:19 13[CFG] <hub|2> selected proposal: IKE:AES_GCM_16_256/PRF_HMAC_SHA2_384/MODP_4096
+2026-11-12T01:45:19 13[IKE] <hub|2> scheduling rekeying in 487s
+2026-11-12T01:45:19 13[IKE] <hub|2> maximum IKE_SA lifetime 547s
+2026-11-12T01:45:19 13[IKE] <hub|2> IKE_SA hub[3] rekeyed between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:45:19 13[ENC] <hub|2> generating CREATE_CHILD_SA response 8 [ SA No KE ]
+2026-11-12T01:45:19 13[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (661 bytes)
+2026-11-12T01:45:19 16[NET] <hub|2> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (65 bytes)
+2026-11-12T01:45:19 16[ENC] <hub|2> parsed INFORMATIONAL request 9 [ D ]
+2026-11-12T01:45:19 16[IKE] <hub|2> received DELETE for IKE_SA hub[2]
+2026-11-12T01:45:19 16[IKE] <hub|2> deleting IKE_SA hub[2] between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:45:19 16[IKE] <hub|2> IKE_SA deleted
+2026-11-12T01:45:19 16[ENC] <hub|2> generating INFORMATIONAL response 9 [ ]
+2026-11-12T01:45:19 16[NET] <hub|2> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:45:49 09[KNL] creating rekey job for CHILD_SA ESP/0xcc4f975a/10.0.0.10
+2026-11-12T01:45:49 09[IKE] <hub|3> establishing CHILD_SA net{10} reqid 1
+2026-11-12T01:45:49 09[ENC] <hub|3> generating CREATE_CHILD_SA request 0 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:45:49 09[NET] <hub|3> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (717 bytes)
+2026-11-12T01:45:49 03[NET] <hub|3> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (705 bytes)
+2026-11-12T01:45:49 03[ENC] <hub|3> parsed CREATE_CHILD_SA response 0 [ SA No KE TSi TSr ]
+2026-11-12T01:45:49 03[CFG] <hub|3> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:45:49 03[IKE] <hub|3> inbound CHILD_SA net{10} established with SPIs c6cc8865_i ccb76ea4_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:45:49 03[IKE] <hub|3> outbound CHILD_SA net{10} established with SPIs c6cc8865_i ccb76ea4_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:45:49 03[IKE] <hub|3> closing CHILD_SA net{9} with SPIs c6577c19_i (585604 bytes) cc4f975a_o (14756651 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:45:49 03[IKE] <hub|3> sending DELETE for ESP CHILD_SA with SPI c6577c19
+2026-11-12T01:45:49 03[ENC] <hub|3> generating INFORMATIONAL request 1 [ D ]
+2026-11-12T01:45:49 03[NET] <hub|3> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:45:49 16[NET] <hub|3> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:45:49 16[ENC] <hub|3> parsed INFORMATIONAL response 1 [ D ]
+2026-11-12T01:45:49 16[IKE] <hub|3> received DELETE for ESP CHILD_SA with SPI cc4f975a
+2026-11-12T01:45:49 16[IKE] <hub|3> CHILD_SA closed
+2026-11-12T01:47:40 13[CFG] vici rekey IKE_SA 'hub'
+2026-11-12T01:47:40 13[IKE] <hub|3> initiating IKE_SA hub[4] to 10.0.0.10
+2026-11-12T01:47:40 13[ENC] <hub|3> generating CREATE_CHILD_SA request 2 [ SA No KE ]
+2026-11-12T01:47:40 13[NET] <hub|3> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (661 bytes)
+2026-11-12T01:47:40 05[NET] <hub|3> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (661 bytes)
+2026-11-12T01:47:40 05[ENC] <hub|3> parsed CREATE_CHILD_SA response 2 [ SA No KE ]
+2026-11-12T01:47:40 05[CFG] <hub|3> selected proposal: IKE:AES_GCM_16_256/PRF_HMAC_SHA2_384/MODP_4096
+2026-11-12T01:47:40 05[IKE] <hub|3> scheduling rekeying in 597s
+2026-11-12T01:47:40 05[IKE] <hub|3> maximum IKE_SA lifetime 657s
+2026-11-12T01:47:40 05[IKE] <hub|3> IKE_SA hub[4] rekeyed between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:47:40 05[IKE] <hub|3> deleting IKE_SA hub[3] between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:47:40 05[IKE] <hub|3> sending DELETE for IKE_SA hub[3]
+2026-11-12T01:47:40 05[ENC] <hub|3> generating INFORMATIONAL request 3 [ D ]
+2026-11-12T01:47:40 05[NET] <hub|3> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (65 bytes)
+2026-11-12T01:47:40 12[NET] <hub|3> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:47:40 12[ENC] <hub|3> parsed INFORMATIONAL response 3 [ ]
+2026-11-12T01:47:40 12[IKE] <hub|3> IKE_SA deleted
+2026-11-12T01:47:49 09[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:47:49 09[ENC] <hub|4> parsed INFORMATIONAL request 0 [ ]
+2026-11-12T01:47:49 09[ENC] <hub|4> generating INFORMATIONAL response 0 [ ]
+2026-11-12T01:47:49 09[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:47:59 09[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:47:59 09[ENC] <hub|4> parsed INFORMATIONAL request 1 [ ]
+2026-11-12T01:47:59 09[ENC] <hub|4> generating INFORMATIONAL response 1 [ ]
+2026-11-12T01:47:59 09[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:47:59 08[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:47:59 08[ENC] <hub|4> parsed CREATE_CHILD_SA request 2 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:47:59 08[CFG] <hub|4> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:47:59 08[IKE] <hub|4> inbound CHILD_SA net{11} established with SPIs c60dde28_i ce7c709c_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:47:59 08[ENC] <hub|4> generating CREATE_CHILD_SA response 2 [ SA No KE TSi TSr ]
+2026-11-12T01:47:59 08[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:47:59 03[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:47:59 03[ENC] <hub|4> parsed INFORMATIONAL request 3 [ D ]
+2026-11-12T01:47:59 03[IKE] <hub|4> received DELETE for ESP CHILD_SA with SPI ccb76ea4
+2026-11-12T01:47:59 03[IKE] <hub|4> closing CHILD_SA net{10} with SPIs c6cc8865_i (598583 bytes) ccb76ea4_o (15028110 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:47:59 03[IKE] <hub|4> sending DELETE for ESP CHILD_SA with SPI c6cc8865
+2026-11-12T01:47:59 03[IKE] <hub|4> CHILD_SA closed
+2026-11-12T01:47:59 03[IKE] <hub|4> outbound CHILD_SA net{11} established with SPIs c60dde28_i ce7c709c_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:47:59 03[ENC] <hub|4> generating INFORMATIONAL response 3 [ D ]
+2026-11-12T01:47:59 03[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:48:09 03[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:09 03[ENC] <hub|4> parsed INFORMATIONAL request 4 [ ]
+2026-11-12T01:48:09 03[ENC] <hub|4> generating INFORMATIONAL response 4 [ ]
+2026-11-12T01:48:09 03[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:48:19 16[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:19 16[ENC] <hub|4> parsed INFORMATIONAL request 5 [ ]
+2026-11-12T01:48:19 16[ENC] <hub|4> generating INFORMATIONAL response 5 [ ]
+2026-11-12T01:48:19 16[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:48:29 09[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:29 09[ENC] <hub|4> parsed INFORMATIONAL request 6 [ ]
+2026-11-12T01:48:29 09[ENC] <hub|4> generating INFORMATIONAL response 6 [ ]
+2026-11-12T01:48:29 09[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:48:39 16[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:39 16[ENC] <hub|4> parsed INFORMATIONAL request 7 [ ]
+2026-11-12T01:48:39 16[ENC] <hub|4> generating INFORMATIONAL response 7 [ ]
+2026-11-12T01:48:39 16[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:48:49 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:49 12[ENC] <hub|4> parsed INFORMATIONAL request 8 [ ]
+2026-11-12T01:48:49 12[ENC] <hub|4> generating INFORMATIONAL response 8 [ ]
+2026-11-12T01:48:49 12[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:48:59 16[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:48:59 16[ENC] <hub|4> parsed INFORMATIONAL request 9 [ ]
+2026-11-12T01:48:59 16[ENC] <hub|4> generating INFORMATIONAL response 9 [ ]
+2026-11-12T01:48:59 16[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:09 08[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:09 08[ENC] <hub|4> parsed INFORMATIONAL request 10 [ ]
+2026-11-12T01:49:09 08[ENC] <hub|4> generating INFORMATIONAL response 10 [ ]
+2026-11-12T01:49:09 08[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:19 14[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:19 14[ENC] <hub|4> parsed INFORMATIONAL request 11 [ ]
+2026-11-12T01:49:19 14[ENC] <hub|4> generating INFORMATIONAL response 11 [ ]
+2026-11-12T01:49:19 14[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:29 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:29 12[ENC] <hub|4> parsed INFORMATIONAL request 12 [ ]
+2026-11-12T01:49:29 12[ENC] <hub|4> generating INFORMATIONAL response 12 [ ]
+2026-11-12T01:49:29 12[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:39 05[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:39 05[ENC] <hub|4> parsed INFORMATIONAL request 13 [ ]
+2026-11-12T01:49:39 05[ENC] <hub|4> generating INFORMATIONAL response 13 [ ]
+2026-11-12T01:49:39 05[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:49 05[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:49 05[ENC] <hub|4> parsed INFORMATIONAL request 14 [ ]
+2026-11-12T01:49:49 05[ENC] <hub|4> generating INFORMATIONAL response 14 [ ]
+2026-11-12T01:49:49 05[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:49:59 05[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:49:59 05[ENC] <hub|4> parsed INFORMATIONAL request 15 [ ]
+2026-11-12T01:49:59 05[ENC] <hub|4> generating INFORMATIONAL response 15 [ ]
+2026-11-12T01:49:59 05[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:50:09 07[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:50:09 07[ENC] <hub|4> parsed INFORMATIONAL request 16 [ ]
+2026-11-12T01:50:09 07[ENC] <hub|4> generating INFORMATIONAL response 16 [ ]
+2026-11-12T01:50:09 07[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:50:19 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:50:19 12[ENC] <hub|4> parsed INFORMATIONAL request 17 [ ]
+2026-11-12T01:50:19 12[ENC] <hub|4> generating INFORMATIONAL response 17 [ ]
+2026-11-12T01:50:19 12[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:50:29 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:50:29 12[ENC] <hub|4> parsed INFORMATIONAL request 18 [ ]
+2026-11-12T01:50:29 12[ENC] <hub|4> generating INFORMATIONAL response 18 [ ]
+2026-11-12T01:50:29 12[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:50:33 05[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:50:33 05[ENC] <hub|4> parsed CREATE_CHILD_SA request 19 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:50:33 05[CFG] <hub|4> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:50:33 05[IKE] <hub|4> inbound CHILD_SA net{12} established with SPIs c44be8fc_i cbffd327_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:50:33 05[ENC] <hub|4> generating CREATE_CHILD_SA response 19 [ SA No KE TSi TSr ]
+2026-11-12T01:50:33 05[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:50:33 14[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:50:33 14[ENC] <hub|4> parsed INFORMATIONAL request 20 [ D ]
+2026-11-12T01:50:33 14[IKE] <hub|4> received DELETE for ESP CHILD_SA with SPI ce7c709c
+2026-11-12T01:50:33 14[IKE] <hub|4> closing CHILD_SA net{11} with SPIs c60dde28_i (735942 bytes) ce7c709c_o (18398259 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:50:33 14[IKE] <hub|4> sending DELETE for ESP CHILD_SA with SPI c60dde28
+2026-11-12T01:50:33 14[IKE] <hub|4> CHILD_SA closed
+2026-11-12T01:50:33 14[IKE] <hub|4> outbound CHILD_SA net{12} established with SPIs c44be8fc_i cbffd327_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:50:33 14[ENC] <hub|4> generating INFORMATIONAL response 20 [ D ]
+2026-11-12T01:50:33 14[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:50:49 07[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:50:49 07[ENC] <hub|4> parsed INFORMATIONAL request 21 [ ]
+2026-11-12T01:50:49 07[ENC] <hub|4> generating INFORMATIONAL response 21 [ ]
+2026-11-12T01:50:49 07[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:51:09 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:51:09 12[ENC] <hub|4> parsed INFORMATIONAL request 22 [ ]
+2026-11-12T01:51:09 12[ENC] <hub|4> generating INFORMATIONAL response 22 [ ]
+2026-11-12T01:51:09 12[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:51:19 10[IKE] <hub|4> sending DPD request
+2026-11-12T01:51:19 10[ENC] <hub|4> generating INFORMATIONAL request 0 [ ]
+2026-11-12T01:51:19 10[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:51:19 12[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:51:19 12[ENC] <hub|4> parsed INFORMATIONAL response 0 [ ]
+2026-11-12T01:51:29 10[IKE] <hub|4> sending DPD request
+2026-11-12T01:51:29 10[ENC] <hub|4> generating INFORMATIONAL request 1 [ ]
+2026-11-12T01:51:29 10[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:51:29 05[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:51:29 05[ENC] <hub|4> parsed INFORMATIONAL request 23 [ ]
+2026-11-12T01:51:29 05[ENC] <hub|4> generating INFORMATIONAL response 23 [ ]
+2026-11-12T01:51:29 05[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:51:29 16[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (57 bytes)
+2026-11-12T01:51:29 16[ENC] <hub|4> parsed INFORMATIONAL response 1 [ ]
+2026-11-12T01:52:54 11[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:52:54 11[ENC] <hub|4> parsed CREATE_CHILD_SA request 24 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:52:54 11[CFG] <hub|4> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:52:54 11[IKE] <hub|4> inbound CHILD_SA net{13} established with SPIs cb06af0e_i cc64cbe8_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:52:54 11[ENC] <hub|4> generating CREATE_CHILD_SA response 24 [ SA No KE TSi TSr ]
+2026-11-12T01:52:54 11[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:52:54 09[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:52:54 09[ENC] <hub|4> parsed INFORMATIONAL request 25 [ D ]
+2026-11-12T01:52:54 09[IKE] <hub|4> received DELETE for ESP CHILD_SA with SPI cbffd327
+2026-11-12T01:52:54 09[IKE] <hub|4> closing CHILD_SA net{12} with SPIs c44be8fc_i (626384 bytes) cbffd327_o (15693743 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:52:54 09[IKE] <hub|4> sending DELETE for ESP CHILD_SA with SPI c44be8fc
+2026-11-12T01:52:54 09[IKE] <hub|4> CHILD_SA closed
+2026-11-12T01:52:54 09[IKE] <hub|4> outbound CHILD_SA net{13} established with SPIs cb06af0e_i cc64cbe8_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:52:54 09[ENC] <hub|4> generating INFORMATIONAL response 25 [ D ]
+2026-11-12T01:52:54 09[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:55:20 08[KNL] creating rekey job for CHILD_SA ESP/0xcb06af0e/10.0.0.20
+2026-11-12T01:55:20 08[IKE] <hub|4> establishing CHILD_SA net{14} reqid 1
+2026-11-12T01:55:20 08[ENC] <hub|4> generating CREATE_CHILD_SA request 2 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:55:20 08[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (717 bytes)
+2026-11-12T01:55:20 16[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (705 bytes)
+2026-11-12T01:55:20 16[ENC] <hub|4> parsed CREATE_CHILD_SA response 2 [ SA No KE TSi TSr ]
+2026-11-12T01:55:20 16[CFG] <hub|4> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:55:20 16[IKE] <hub|4> inbound CHILD_SA net{14} established with SPIs c0185ab4_i c6bc3b95_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:55:20 16[IKE] <hub|4> outbound CHILD_SA net{14} established with SPIs c0185ab4_i c6bc3b95_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:55:20 16[IKE] <hub|4> closing CHILD_SA net{13} with SPIs cb06af0e_i (673191 bytes) cc64cbe8_o (16341524 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:55:20 16[IKE] <hub|4> sending DELETE for ESP CHILD_SA with SPI cb06af0e
+2026-11-12T01:55:20 16[ENC] <hub|4> generating INFORMATIONAL request 3 [ D ]
+2026-11-12T01:55:20 16[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:55:20 14[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:55:20 14[ENC] <hub|4> parsed INFORMATIONAL response 3 [ D ]
+2026-11-12T01:55:20 14[IKE] <hub|4> received DELETE for ESP CHILD_SA with SPI cc64cbe8
+2026-11-12T01:55:20 14[IKE] <hub|4> CHILD_SA closed
+2026-11-12T01:57:33 09[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (661 bytes)
+2026-11-12T01:57:33 09[ENC] <hub|4> parsed CREATE_CHILD_SA request 26 [ SA No KE ]
+2026-11-12T01:57:33 09[IKE] <hub|4> 10.0.0.10 is initiating an IKE_SA
+2026-11-12T01:57:33 09[CFG] <hub|4> selected proposal: IKE:AES_GCM_16_256/PRF_HMAC_SHA2_384/MODP_4096
+2026-11-12T01:57:33 09[IKE] <hub|4> scheduling rekeying in 551s
+2026-11-12T01:57:33 09[IKE] <hub|4> maximum IKE_SA lifetime 611s
+2026-11-12T01:57:33 09[IKE] <hub|4> IKE_SA hub[5] rekeyed between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:57:33 09[ENC] <hub|4> generating CREATE_CHILD_SA response 26 [ SA No KE ]
+2026-11-12T01:57:33 09[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (661 bytes)
+2026-11-12T01:57:33 03[NET] <hub|4> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (65 bytes)
+2026-11-12T01:57:33 03[ENC] <hub|4> parsed INFORMATIONAL request 27 [ D ]
+2026-11-12T01:57:33 03[IKE] <hub|4> received DELETE for IKE_SA hub[4]
+2026-11-12T01:57:33 03[IKE] <hub|4> deleting IKE_SA hub[4] between 10.0.0.20[branch10]...10.0.0.10[hub]
+2026-11-12T01:57:33 03[IKE] <hub|4> IKE_SA deleted
+2026-11-12T01:57:33 03[ENC] <hub|4> generating INFORMATIONAL response 27 [ ]
+2026-11-12T01:57:33 03[NET] <hub|4> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (57 bytes)
+2026-11-12T01:57:45 12[KNL] creating rekey job for CHILD_SA ESP/0xc0185ab4/10.0.0.20
+2026-11-12T01:57:45 12[IKE] <hub|5> establishing CHILD_SA net{15} reqid 1
+2026-11-12T01:57:45 12[ENC] <hub|5> generating CREATE_CHILD_SA request 0 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:57:45 12[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (717 bytes)
+2026-11-12T01:57:45 16[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (705 bytes)
+2026-11-12T01:57:45 16[ENC] <hub|5> parsed CREATE_CHILD_SA response 0 [ SA No KE TSi TSr ]
+2026-11-12T01:57:45 16[CFG] <hub|5> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:57:45 16[IKE] <hub|5> inbound CHILD_SA net{15} established with SPIs cbfe7752_i cbcee8d4_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:57:45 16[IKE] <hub|5> outbound CHILD_SA net{15} established with SPIs cbfe7752_i cbcee8d4_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:57:45 16[IKE] <hub|5> closing CHILD_SA net{14} with SPIs c0185ab4_i (674715 bytes) c6bc3b95_o (17013522 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:57:45 16[IKE] <hub|5> sending DELETE for ESP CHILD_SA with SPI c0185ab4
+2026-11-12T01:57:45 16[ENC] <hub|5> generating INFORMATIONAL request 1 [ D ]
+2026-11-12T01:57:45 16[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:57:45 06[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:57:45 06[ENC] <hub|5> parsed INFORMATIONAL response 1 [ D ]
+2026-11-12T01:57:45 06[IKE] <hub|5> received DELETE for ESP CHILD_SA with SPI c6bc3b95
+2026-11-12T01:57:45 06[IKE] <hub|5> CHILD_SA closed
+2026-11-12T01:59:57 10[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T01:59:57 10[ENC] <hub|5> parsed CREATE_CHILD_SA request 0 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T01:59:57 10[CFG] <hub|5> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T01:59:57 10[IKE] <hub|5> inbound CHILD_SA net{16} established with SPIs cc512c88_i c651154b_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:59:57 10[ENC] <hub|5> generating CREATE_CHILD_SA response 0 [ SA No KE TSi TSr ]
+2026-11-12T01:59:57 10[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T01:59:58 07[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T01:59:58 07[ENC] <hub|5> parsed INFORMATIONAL request 1 [ D ]
+2026-11-12T01:59:58 07[IKE] <hub|5> received DELETE for ESP CHILD_SA with SPI cbcee8d4
+2026-11-12T01:59:58 07[IKE] <hub|5> closing CHILD_SA net{15} with SPIs cbfe7752_i (589373 bytes) cbcee8d4_o (14800645 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:59:58 07[IKE] <hub|5> sending DELETE for ESP CHILD_SA with SPI cbfe7752
+2026-11-12T01:59:58 07[IKE] <hub|5> CHILD_SA closed
+2026-11-12T01:59:58 07[IKE] <hub|5> outbound CHILD_SA net{16} established with SPIs cc512c88_i c651154b_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T01:59:58 07[ENC] <hub|5> generating INFORMATIONAL response 1 [ D ]
+2026-11-12T01:59:58 07[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)
+2026-11-12T01:59:58 14[KNL] creating rekey job for CHILD_SA ESP/0xcbfe7752/10.0.0.20
+2026-11-12T02:02:00 06[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (717 bytes)
+2026-11-12T02:02:00 06[ENC] <hub|5> parsed CREATE_CHILD_SA request 2 [ N(REKEY_SA) SA No KE TSi TSr ]
+2026-11-12T02:02:00 06[CFG] <hub|5> selected proposal: ESP:AES_GCM_16_256/MODP_4096/NO_EXT_SEQ
+2026-11-12T02:02:00 06[IKE] <hub|5> inbound CHILD_SA net{17} established with SPIs c0486068_i c04ae341_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T02:02:00 06[ENC] <hub|5> generating CREATE_CHILD_SA response 2 [ SA No KE TSi TSr ]
+2026-11-12T02:02:00 06[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (705 bytes)
+2026-11-12T02:02:00 10[NET] <hub|5> received packet: from 10.0.0.10[4500] to 10.0.0.20[4500] (69 bytes)
+2026-11-12T02:02:00 10[ENC] <hub|5> parsed INFORMATIONAL request 3 [ D ]
+2026-11-12T02:02:00 10[IKE] <hub|5> received DELETE for ESP CHILD_SA with SPI c651154b
+2026-11-12T02:02:00 10[IKE] <hub|5> closing CHILD_SA net{16} with SPIs cc512c88_i (542445 bytes) c651154b_o (13617705 bytes) and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T02:02:00 10[IKE] <hub|5> sending DELETE for ESP CHILD_SA with SPI cc512c88
+2026-11-12T02:02:00 10[IKE] <hub|5> CHILD_SA closed
+2026-11-12T02:02:00 10[IKE] <hub|5> outbound CHILD_SA net{17} established with SPIs c0486068_i c04ae341_o and TS 0.0.0.0/0 === 0.0.0.0/0
+2026-11-12T02:02:00 10[ENC] <hub|5> generating INFORMATIONAL response 3 [ D ]
+2026-11-12T02:02:00 10[NET] <hub|5> sending packet: from 10.0.0.20[4500] to 10.0.0.10[4500] (69 bytes)

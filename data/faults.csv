@@ -1,0 +1,12 @@
+timestamp,event,node,detail
+2026-11-12T02:03:39+00:00,baseline-start,all,
+2026-11-12T02:11:39+00:00,dpd-flap-start,branch3,loss ramp 30%/30s 70%/30s 100%/40s both directions
+2026-11-12T02:11:40+00:00,dpd-flap-stage,branch3,loss=30%
+2026-11-12T02:12:10+00:00,dpd-flap-stage,branch3,loss=70%
+2026-11-12T02:12:40+00:00,dpd-flap-stage,branch3,loss=100%
+2026-11-12T02:13:20+00:00,dpd-flap-end,branch3,
+2026-11-12T02:16:20+00:00,mtu-blackhole-start,branch5,ICMP frag-needed dropped at gateway
+2026-11-12T02:19:21+00:00,mss-clamp,branch5,mss=1360
+2026-11-12T02:22:21+00:00,rekey-storm-start,all,hub lifetimes 90s/300s with zero jitter; forced simultaneous IKE rekey on 12 branches
+2026-11-12T02:28:25+00:00,heal,all,healthy profile reloaded; impairments removed
+2026-11-12T02:32:25+00:00,scenario-end,all,

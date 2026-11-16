@@ -1,0 +1,66 @@
+wrote lab/generated/docker-compose.yml (12 branches, profile=healthy) and 13 swanctl.conf files
+ Network generated_underlay  Creating
+ Network generated_underlay  Created
+ Container hub  Creating
+ Container hub  Created
+ Container branch3  Creating
+ Container branch10  Creating
+ Container branch8  Creating
+ Container branch9  Creating
+ Container branch4  Creating
+ Container branch11  Creating
+ Container branch7  Creating
+ Container branch12  Creating
+ Container branch2  Creating
+ Container branch5  Creating
+ Container branch6  Creating
+ Container branch1  Creating
+ Container branch3  Created
+ Container branch1  Created
+ Container branch5  Created
+ Container branch4  Created
+ Container branch2  Created
+ Container branch6  Created
+ Container branch7  Created
+ Container branch8  Created
+ Container branch9  Created
+ Container branch11  Created
+ Container branch10  Created
+ Container branch12  Created
+ Container hub  Starting
+ Container hub  Started
+ Container branch5  Starting
+ Container branch2  Starting
+ Container branch8  Starting
+ Container branch10  Starting
+ Container branch1  Starting
+ Container branch11  Starting
+ Container branch4  Starting
+ Container branch3  Starting
+ Container branch12  Starting
+ Container branch9  Starting
+ Container branch7  Starting
+ Container branch6  Starting
+ Container branch11  Started
+ Container branch1  Started
+ Container branch3  Started
+ Container branch5  Started
+ Container branch10  Started
+ Container branch12  Started
+ Container branch2  Started
+ Container branch9  Started
+ Container branch4  Started
+ Container branch6  Started
+ Container branch7  Started
+ Container branch8  Started
+[02:02:39] lab up, settling 60s
+[02:11:39] dpd-flap-start branch3 loss ramp 30%/30s 70%/30s 100%/40s both directions
+[02:11:40] dpd-flap-stage branch3 loss=30%
+[02:12:10] dpd-flap-stage branch3 loss=70%
+[02:12:40] dpd-flap-stage branch3 loss=100%
+[02:13:20] dpd-flap-end branch3 
+[02:16:20] mtu-blackhole-start branch5 ICMP frag-needed dropped at gateway
+[02:19:21] mss-clamp branch5 mss=1360
+[02:22:21] rekey-storm-start all hub lifetimes 90s/300s with zero jitter; forced simultaneous IKE rekey on 12 branches
+[02:28:25] heal all healthy profile reloaded; impairments removed
+[02:32:25] scenario complete

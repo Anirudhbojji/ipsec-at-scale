@@ -1,0 +1,709 @@
+[
+  {
+    "n": 1,
+    "signature": {
+      "incident_start": "2026-11-12T02:11:46+00:00",
+      "tunnels_alarming": 1,
+      "tunnels_total": 12,
+      "fleet_wide": false,
+      "hub_at_alarm": {
+        "hub_rekey_sum": 17.0,
+        "hub_rekey_burst": 3.0,
+        "hub_cpu_max": 1.4
+      },
+      "hub_baseline_max": {
+        "hub_rekey_sum": 17.0,
+        "hub_rekey_burst": 3.0,
+        "hub_cpu_max": 1.6
+      },
+      "tunnels": [
+        {
+          "node": "branch3",
+          "alarm_at": "2026-11-12T02:11:46+00:00",
+          "features_moved": [
+            {
+              "feature": "tcp_min",
+              "z": 10.0,
+              "value": 0.0,
+              "baseline_median": 1.0
+            },
+            {
+              "feature": "loss_mean",
+              "z": 3.1,
+              "value": 6.25,
+              "baseline_median": 0.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "pmtud_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_rekey_sum",
+            "hub_rekey_burst",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 3,
+            "rekey_in_s": 118
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 0.0,
+            "loss_mean_end": 29.2,
+            "max_zscore": 14.6
+          }
+        }
+      ]
+    },
+    "ground_truth": {
+      "fault": "dpd-flap",
+      "node": "branch3",
+      "expected_runbook": "underlay-loss"
+    },
+    "triage": {
+      "runbook": "underlay-loss",
+      "confidence": "high",
+      "diagnosis": "Underlay packet loss on branch3 is causing TCP transfer stalls (tcp_min=0) and rising loss (6.25% at alarm, scaling to 29.2% within 30s). All hub metrics and other tunnels remain completely baseline, pointing to a localized path issue.",
+      "evidence": [
+        "branch3 tcp_min dropped to 0.0 (z=10.0)",
+        "branch3 loss_mean rose to 6.25% (z=3.1) and reached 29.2% in next 30s",
+        "pmtud_min remained flat at 1.0",
+        "down_sum remained 0 with ike_state ESTABLISHED"
+      ],
+      "ruled_out": [
+        "mtu-blackhole: pmtud_min stayed at 1.0 instead of dropping to 0, and loss_mean increased",
+        "rekey-storm: only 1 tunnel affected and hub_rekey_burst (3.0) is at baseline max",
+        "tunnel-down: child SA is INSTALLED, down_sum is 0, and loss is under 100%",
+        "hub-overload: hub CPU is normal at 1.4% and issue is isolated to a single branch"
+      ],
+      "recommended_action": "raise-dpd-tolerance",
+      "verify": "loss_mean returns to baseline; no ike_down_event; retrans_sum stops climbing.",
+      "page_text": "Underlay packet loss on branch3 (loss_mean 29.2%, tcp_min 0); raise DPD tolerance to prevent SA flap."
+    },
+    "model": "gemini-3.5-flash"
+  },
+  {
+    "n": 2,
+    "signature": {
+      "incident_start": "2026-11-12T02:16:27+00:00",
+      "tunnels_alarming": 1,
+      "tunnels_total": 12,
+      "fleet_wide": false,
+      "hub_at_alarm": {
+        "hub_rekey_sum": 11.0,
+        "hub_rekey_burst": 2.0,
+        "hub_cpu_max": 1.4
+      },
+      "hub_baseline_max": {
+        "hub_rekey_sum": 20.0,
+        "hub_rekey_burst": 3.0,
+        "hub_cpu_max": 1.6
+      },
+      "tunnels": [
+        {
+          "node": "branch5",
+          "alarm_at": "2026-11-12T02:16:27+00:00",
+          "features_moved": [
+            {
+              "feature": "pmtud_min",
+              "z": 10.0,
+              "value": 0.0,
+              "baseline_median": 1.0
+            },
+            {
+              "feature": "tcp_min",
+              "z": 10.0,
+              "value": 0.0,
+              "baseline_median": 1.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_rekey_sum",
+            "hub_rekey_burst",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 46,
+            "rekey_in_s": 91
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 0.0,
+            "tcp_min_end": 0.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 10.0
+          }
+        }
+      ]
+    },
+    "ground_truth": {
+      "fault": "mtu-blackhole",
+      "node": "branch5",
+      "expected_runbook": "mtu-blackhole"
+    },
+    "triage": {
+      "runbook": "mtu-blackhole",
+      "confidence": "high",
+      "diagnosis": "Branch5 is experiencing a PMTUD blackhole where packets exceeding path MTU with the DF bit set are dropped without returning an ICMP fragmentation-needed message. TCP handshakes succeed but data transfers stall, while standard ping latency and loss remain completely normal.",
+      "evidence": [
+        "pmtud_min = 0.0 (baseline 1.0, z=10.0)",
+        "tcp_min = 0.0 (baseline 1.0, z=10.0)",
+        "loss_mean = 0.0%",
+        "child_state = INSTALLED"
+      ],
+      "ruled_out": [
+        "underlay-loss: loss_mean (0.0%), rtt_mean, jitter_mean, and retrans_sum stayed flat at baseline",
+        "tunnel-down: child_state is INSTALLED, ike_state is ESTABLISHED, and down_sum is 0",
+        "rekey-storm: single tunnel incident; hub_rekey_burst (2.0) and hub_rekey_sum (11.0) are below baseline max",
+        "hub-overload: hub_cpu_max is 1.4%, well below threshold"
+      ],
+      "recommended_action": "apply-mss-clamp",
+      "verify": "tcp_min returns to 1 within two ticks after applying MSS clamping",
+      "page_text": "PMTUD blackhole on branch5: pmtud_min and tcp_min dropped to 0 while loss_mean stays 0% and SA remains INSTALLED."
+    },
+    "model": "gemini-3.5-flash"
+  },
+  {
+    "n": 3,
+    "signature": {
+      "incident_start": "2026-11-12T02:22:30+00:00",
+      "tunnels_alarming": 11,
+      "tunnels_total": 12,
+      "fleet_wide": true,
+      "hub_at_alarm": {
+        "hub_rekey_sum": 23.0,
+        "hub_rekey_burst": 14.0,
+        "hub_cpu_max": 5.4
+      },
+      "hub_baseline_max": {
+        "hub_rekey_sum": 23.0,
+        "hub_rekey_burst": 14.0,
+        "hub_cpu_max": 5.4
+      },
+      "tunnels": [
+        {
+          "node": "branch1",
+          "alarm_at": "2026-11-12T02:22:30+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 32,
+            "rekey_in_s": 120
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch4",
+          "alarm_at": "2026-11-12T02:22:30+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 15,
+            "rekey_in_s": 138
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch9",
+          "alarm_at": "2026-11-12T02:22:30+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 24,
+            "rekey_in_s": 113
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch10",
+          "alarm_at": "2026-11-12T02:22:31+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 120,
+            "rekey_in_s": 20
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch11",
+          "alarm_at": "2026-11-12T02:22:31+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 23,
+            "rekey_in_s": 128
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch12",
+          "alarm_at": "2026-11-12T02:22:31+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 106,
+            "rekey_in_s": 43
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch2",
+          "alarm_at": "2026-11-12T02:22:31+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 20,
+            "rekey_in_s": 129
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch7",
+          "alarm_at": "2026-11-12T02:22:31+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 22,
+            "rekey_in_s": 129
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch6",
+          "alarm_at": "2026-11-12T02:22:33+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 11,
+            "rekey_in_s": 141
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch8",
+          "alarm_at": "2026-11-12T02:22:33+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "rekey_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 113,
+            "rekey_in_s": 20
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        },
+        {
+          "node": "branch3",
+          "alarm_at": "2026-11-12T02:22:34+00:00",
+          "features_moved": [
+            {
+              "feature": "hub_rekey_burst",
+              "z": 8.1,
+              "value": 14.0,
+              "baseline_median": 2.0
+            },
+            {
+              "feature": "rekey_sum",
+              "z": 4.0,
+              "value": 4.0,
+              "baseline_median": 0.0
+            },
+            {
+              "feature": "hub_rekey_sum",
+              "z": 3.2,
+              "value": 23.0,
+              "baseline_median": 4.0
+            }
+          ],
+          "features_flat": [
+            "rtt_mean",
+            "rtt_max",
+            "jitter_mean",
+            "loss_mean",
+            "pmtud_min",
+            "tcp_min",
+            "retrans_sum",
+            "down_sum",
+            "hub_cpu_max"
+          ],
+          "tunnel_state_at_alarm": {
+            "ike_state": "ESTABLISHED",
+            "child_state": "INSTALLED",
+            "sa_age_s": 42,
+            "rekey_in_s": 119
+          },
+          "next_30s": {
+            "ike_down_event": false,
+            "pmtud_min_end": 1.0,
+            "tcp_min_end": 1.0,
+            "loss_mean_end": 0.0,
+            "max_zscore": 8.1
+          }
+        }
+      ]
+    },
+    "ground_truth": {
+      "fault": "rekey-storm",
+      "node": "all",
+      "expected_runbook": "rekey-storm"
+    },
+    "triage": {
+      "runbook": "rekey-storm",
+      "confidence": "high",
+      "diagnosis": "A synchronised rekey storm occurred across 11 of 12 branch tunnels simultaneously. The hub saw a spike in rekey frequency, but tunnel traffic probes remain healthy and hub CPU remains under control.",
+      "evidence": [
+        "hub_rekey_burst = 14.0 (z = 8.1)",
+        "hub_rekey_sum = 23.0 (z = 3.2)",
+        "11 of 12 tunnels alarming within 4 seconds",
+        "loss_mean = 0.0 across all tunnels",
+        "tcp_min = 1.0 across all tunnels",
+        "pmtud_min = 1.0 across all tunnels"
+      ],
+      "ruled_out": [
+        "hub-overload: hub_cpu_max remained low at 5.4% and retrans_sum stayed flat",
+        "tunnel-down: all tunnels stayed INSTALLED with 0 down_sum and no ike_down_events",
+        "underlay-loss: loss_mean, rtt_mean, and jitter_mean remained flat at baseline",
+        "mtu-blackhole: tcp_min and pmtud_min remained at 1.0 across all nodes"
+      ],
+      "recommended_action": "widen-rand-time",
+      "verify": "hub_rekey_burst stays at or below baseline max over the next rekey lifetime.",
+      "page_text": "Rekey storm across 11/12 tunnels; hub_rekey_burst spiked to 14 (z=8.1). Data path unaffected. Widen rand_time on hub."
+    },
+    "model": "gemini-3.5-flash"
+  }
+]
